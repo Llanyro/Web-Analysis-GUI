@@ -32,7 +32,7 @@ This video shows how to use the application:
 
 ## Some useful things
 
-###Add new ditc to the application
+### Add new ditc to the application
 Just add the dict to the folder named dict/
 Remember that the extension need to be .dict
 
