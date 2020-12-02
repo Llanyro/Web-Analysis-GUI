@@ -26,4 +26,9 @@ _sudo is absolutely necessary for some tools_
 sudo python3 WebAnalysisGui.py
 ```
 
+## How to use
+
+This video shows how to use the application: 
+
+
 
