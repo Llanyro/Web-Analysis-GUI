@@ -77,7 +77,7 @@ class MainURLtoIPDivTab(GeneralDivTab):
                 text.setText(ip)
 
     def clear(self):
-        text = self.get("Ultimo resultado locate")
+        text = self.get("IP")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -115,11 +115,11 @@ class MainLocateDivTab(GeneralDivTab):
         super().__init__("Div", parent)
         GeneralButton("Locate", self, 0, 0, command=self.locate)
         GeneralButton("Clear text!", self, 0, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado locate", self, 1, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 1, 0, 7)
 
     def printlocate(self, dic: dict):
         if dic['data_dict_response'] is True:
-            text = self.get("Ultimo resultado locate")
+            text = self.get("Ultimo resultado")
             text.setText("")
 
             pais = dic.get('pais')
@@ -141,7 +141,7 @@ class MainLocateDivTab(GeneralDivTab):
 
     def locate(self):
         urltext = self.parent.parent.parent.get("URL")
-        text = self.get("Ultimo resultado locate")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -157,7 +157,7 @@ class MainLocateDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def clear(self):
-        text = self.get("Ultimo resultado locate")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -178,10 +178,10 @@ class MainWhoIsDivTab(GeneralDivTab):
         super().__init__("Div", parent)
         GeneralButton("Scan!", self, 0, 0, command=self.scan)
         GeneralButton("Clear text!", self, 0, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado whois", self, 1, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 1, 0, 7)
 
     def printscan(self, dic_full: dict):
-        text = self.get("Ultimo resultado whois")
+        text = self.get("Ultimo resultado")
         text.setText("")
         resultado = dic_full['data_dict_response']
         if resultado is False:
@@ -212,7 +212,7 @@ class MainWhoIsDivTab(GeneralDivTab):
 
     def scan(self):
         urltext = self.parent.parent.parent.get("URL")
-        text = self.get("Ultimo resultado whois")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -227,7 +227,7 @@ class MainWhoIsDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def clear(self):
-        text = self.get("Ultimo resultado whois")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -249,10 +249,10 @@ class MainInfoVirusTotalDivTab(GeneralDivTab):
         GeneralButton("Scan!", self, 0, 0, command=self.scan)
         GeneralButton("Scan simple!", self, 0, 1, command=self.scansimple)
         GeneralButton("Clear text!", self, 0, 2, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado virustotal", self, 1, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 1, 0, 7)
 
     def printscan(self, dic_full: dict, completo: bool):
-        text = self.get("Ultimo resultado virustotal")
+        text = self.get("Ultimo resultado")
         text.setText("")
         dic = dic_full.get('results')
         response_code_1 = dic_full.get('response_code')
@@ -304,7 +304,7 @@ class MainInfoVirusTotalDivTab(GeneralDivTab):
             self.printscansdictlist(scans)
 
     def printscansdictlist(self, scans: dict):
-        text = self.get("Ultimo resultado virustotal")
+        text = self.get("Ultimo resultado")
         text.appendText("Analizador\t\t\t\t\tResultado\t\t\tMensaje\n")
         for k in scans:
             linea = scans[k]
@@ -324,7 +324,7 @@ class MainInfoVirusTotalDivTab(GeneralDivTab):
 
     def scan(self):
         urltext = self.parent.parent.parent.get("URL")
-        text = self.get("Ultimo resultado virustotal")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -340,7 +340,7 @@ class MainInfoVirusTotalDivTab(GeneralDivTab):
 
     def scansimple(self):
         urltext = self.parent.parent.parent.get("URL")
-        text = self.get("Ultimo resultado virustotal")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -355,7 +355,7 @@ class MainInfoVirusTotalDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def clear(self):
-        text = self.get("Ultimo resultado virustotal")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -376,11 +376,11 @@ class MainWAFW00FDivTab(GeneralDivTab):
         super().__init__("Div", parent)
         GeneralButton("Scan WAF!", self, 0, 0, command=self.waf)
         GeneralButton("Clear text!", self, 0, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado wafwoof", self, 1, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 1, 0, 7)
 
     def waf(self):
         urltext = self.parent.parent.parent.get("URL")
-        text = self.get("Ultimo resultado wafwoof")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -397,7 +397,7 @@ class MainWAFW00FDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def clear(self):
-        text = self.get("Ultimo resultado wafwoof")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -449,7 +449,7 @@ class MainFuzzingDivTab(GeneralDivTab):
         GeneralButton("Fuzz!", self, 1, 0, command=self.fuzz)
         GeneralButton("Clear text!", self, 1, 1, command=self.clear)
         GeneralButton("Example", self, 1, 2, command=self.example)
-        GeneralTextAreaScrollTab("Ultimo resultado fuzz", self, 2, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 2, 0, 7)
 
     def example(self):
         text = self.get("URL")
@@ -460,7 +460,7 @@ class MainFuzzingDivTab(GeneralDivTab):
 
     def fuzz(self):
         urltext = self.get("URL")
-        text = self.get("Ultimo resultado fuzz")
+        text = self.get("Ultimo resultado")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
             messagebox.showinfo("Aviso", "La url no puede estar vacia!")
@@ -477,14 +477,14 @@ class MainFuzzingDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def printFuzz(self, li: list):
-        text = self.get("Ultimo resultado fuzz")
+        text = self.get("Ultimo resultado")
         for i in li:
             text.appendText(f"Url: {i['url']}\n")
             text.appendText(f"\tResponse code: {i['response_code']}\n")
             text.appendText(f"\tContent length: {i['content_lenght']}\n")
 
     def clear(self):
-        text = self.get("Ultimo resultado crawl")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -507,11 +507,11 @@ class MainCrawlingDivTab(GeneralDivTab):
         GeneralCombox("Diccionarios", self, 0, 1, files.getFilesNames("./dict/"))
         GeneralButton("Crawl", self, 1, 0, command=self.crawl)
         GeneralButton("Clear text!", self, 1, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado crawl", self, 2, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 2, 0, 7)
 
     def crawl(self):
         urltext = self.get("URL")
-        text = self.get("Ultimo resultado crawl")
+        text = self.get("Ultimo resultado")
         dictobj = self.get("Diccionarios")
 
         if urltext is None or varcontroller.variableCorrecta(urltext.getText()) is False:
@@ -536,14 +536,14 @@ class MainCrawlingDivTab(GeneralDivTab):
                 messagebox.showinfo("WAT", "URL invalida\nIntroduce una url tipo:\nhttps://www.google.com")
 
     def printCrawl(self, li: list):
-        text = self.get("Ultimo resultado crawl")
+        text = self.get("Ultimo resultado")
         for i in li:
             text.appendText(f"Url: {i['url']}\n")
             text.appendText(f"\tResponse code: {i['response_code']}\n")
             text.appendText(f"\tContent length: {i['content_lenght']}\n")
 
     def clear(self):
-        text = self.get("Ultimo resultado crawl")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -603,11 +603,11 @@ class MainNMAPDivTab(GeneralDivTab):
         # Resultados
         GeneralButton("Scan!", self, 4, 0, command=self.runNMAP)
         GeneralButton("Clear text!", self, 4, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado nmap", self, 5, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 5, 0, 7)
 
     def printResults(self, result: dict):
         status = result.get("status")
-        text = self.get("Ultimo resultado nmap")
+        text = self.get("Ultimo resultado")
 
         ip = result.get("ip")
         closed_ports = result.get("closed_ports")
@@ -663,7 +663,7 @@ class MainNMAPDivTab(GeneralDivTab):
         version = self.get("Get service version")
         agressive = self.get("Agressive")
         delay = self.get("Delay?")
-        text = self.get("Ultimo resultado nmap")
+        text = self.get("Ultimo resultado")
 
         if ip is None or varcontroller.variableCorrecta(ip.getText()) is False:
             messagebox.showinfo("Aviso", "Ip no valida o null!")
@@ -743,7 +743,7 @@ class MainNMAPDivTab(GeneralDivTab):
         print(type(agressive), type(agressive.var()), agressive.var().get())"""
 
     def clear(self):
-        text = self.get("Ultimo resultado nmap")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -814,7 +814,7 @@ class MainSpiderDivTab(GeneralDivTab):
 
         MainSpiderBotonSpider("Spider!", self, 1, 0)
         GeneralButton("Clear text!", self, 1, 1, command=self.clear)
-        GeneralTextAreaScrollTab("Ultimo resultado spider", self, 2, 0, 7)
+        GeneralTextAreaScrollTab("Ultimo resultado", self, 2, 0, 7)
 
     @property
     def rastreator(self):
@@ -825,7 +825,7 @@ class MainSpiderDivTab(GeneralDivTab):
         self.__last_rastreator = rast
 
     def printSpider(self):
-        text = self.get("Ultimo resultado spider")
+        text = self.get("Ultimo resultado")
         if text is None or issubclass(text.__class__, GeneralTextAreaScrollTab) is False:
             print("Text no valido")
         elif self.__last_rastreator is None:
@@ -846,7 +846,7 @@ class MainSpiderDivTab(GeneralDivTab):
             text.appendText("", readonly=True)
 
     def clear(self):
-        text = self.get("Ultimo resultado spider")
+        text = self.get("Ultimo resultado")
 
         if text is None:
             messagebox.showerror("Error", "Texto no encontrado!")
@@ -879,5 +879,5 @@ class MainVentana(GeneralVentana):
         MainMenu(self)
 
 
-v = MainVentana("Ventana general")
+v = MainVentana("Web Analysis GUI")
 v.start()

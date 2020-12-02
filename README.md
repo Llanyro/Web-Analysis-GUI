@@ -28,7 +28,7 @@ sudo python3 WebAnalysisGui.py
 
 ## How to use
 
-This video shows how to use the application: 
+This video shows how to use the application: https://www.youtube.com/watch?v=kLNXJmrvE0g&feature=youtu.be
 
 ## Some useful things
 

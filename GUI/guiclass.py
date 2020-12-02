@@ -1,5 +1,5 @@
 from tkinter import TOP, Button, Tk, E, W, N, S, messagebox, Menu, Scrollbar, Text, RIGHT, Y, LEFT, END, DISABLED, \
-    NORMAL, Entry, Checkbutton, IntVar
+    NORMAL, Entry, Checkbutton, IntVar, PhotoImage
 from tkinter.ttk import Notebook, Frame, Combobox
 
 
