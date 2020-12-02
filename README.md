@@ -1,6 +1,6 @@
 # Web-Analysis-GUI
 
-This is a simple gui with diferent tools to get info about some web servers.
+This is a simple gui for unix with diferent tools to get info about some web servers.
 Remember that use this software is free and have no warranty.
 
 ## Absolutely necessary
