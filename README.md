@@ -7,8 +7,9 @@ Remember that use this software is free use and have no warranty.
 ## How to install
 _Download the repository_
 ```
-git clone https://github.com/Llanyro/Web-Analysis-GUI
-cd Web-Analysis-GUI
+https://github.com/Llanyro/Web-Analysis-GUI/releases/download/v0.10.1/Web-Analysis-GUI-0.10.1.zip
+unzip Web-Analysis-GUI-0.10.1.zip
+cd Web-Analysis-GUI-main
 ```
 _Install packages needed_
 ```
