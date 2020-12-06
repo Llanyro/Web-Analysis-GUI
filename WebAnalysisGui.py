@@ -1,6 +1,6 @@
 import webbrowser
 from tkinter import messagebox
-from GUI.guiclass import GeneralTab, GeneralButton, GeneralNotebook, GeneralVentana, GeneralMenuBar, GeneralMenu, \
+from Easy_Tkinter.guiclass import GeneralTab, GeneralButton, GeneralNotebook, GeneralVentana, GeneralMenuBar, GeneralMenu, \
     GeneralDivTab, GeneralTextAreaScrollTab, GeneralEntradaTexto, GeneralCombox, GeneralCheckBox
 from Llanylib.SimpleTools import ControlVariables, URLController, FilesController
 from Funcionalidades.FuncionesRastreator import Rastreator, RastreatorModes, RastreatorEvade
