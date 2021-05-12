@@ -8,27 +8,27 @@ from Llanylib.SimpleTools import LlanyClass, FilesController, URLController
 
 
 # region Enums
-class RastreatorModes(Enum):
+class SpiderModes(Enum):
     SIMPLE = 0
-    RASTREATOR = 1
+    FULL = 1
 
 
-class RastreatorEvade(Enum):
+class SpiderEvade(Enum):
     NONE = 0
     CLOUDFLARE = 1
 
 
 # endregion
 
-class Rastreator(LlanyClass):
+class Spider(LlanyClass):
     # region Variables
     # Ej: https://www.google.es/  | https://jsonlint.com
     __url_original: str  # Url que se recibe   -> https://www.google.es/  | https://jsonlint.com
     __url_dom: str       # Url de tipo dominio -> https://www.google     | https://jsonlint
     __root_url: str      # Url para concat     -> https://www.google.es/  | https://jsonlint.com/
 
-    __mode: RastreatorModes
-    __rastreatorEvade: RastreatorEvade
+    __mode: SpiderModes
+    __rastreatorEvade: SpiderEvade
     __petitionObject = None
     __cookies: dict
     __url_list: list
@@ -41,8 +41,8 @@ class Rastreator(LlanyClass):
 
     # endregion
     # region Funciones
-    def __init__(self, url: str, mode: RastreatorModes = RastreatorModes.SIMPLE,
-                 evademode: RastreatorEvade = RastreatorEvade.NONE, cookies=None):
+    def __init__(self, url: str, mode: SpiderModes = SpiderModes.SIMPLE,
+                 evademode: SpiderEvade = SpiderEvade.NONE, cookies=None):
         if cookies is None:
             cookies = {}
 
@@ -65,9 +65,9 @@ class Rastreator(LlanyClass):
         self.__generatePetitionsObject()
 
     def __generatePetitionsObject(self):
-        if self.__rastreatorEvade == RastreatorEvade.NONE:
+        if self.__rastreatorEvade == SpiderEvade.NONE:
             self.__petitionObject = Session()
-        elif self.__rastreatorEvade == RastreatorEvade.CLOUDFLARE:
+        elif self.__rastreatorEvade == SpiderEvade.CLOUDFLARE:
             self.__petitionObject = cloudscraper.create_scraper()
         else:
             print("Has introducido un Evade fuera del rango")
@@ -76,7 +76,7 @@ class Rastreator(LlanyClass):
             self.__petitionObject.cookies.set(i, self.__cookies[i])
 
     def __saveUrlList(self, url: str):
-        if self.__mode == RastreatorModes.RASTREATOR:
+        if self.__mode == SpiderModes.FULL:
             if self.__url_list.__contains__(url) is False:
                 self.__url_list.append(url)
         self.__urlFind.append(url)
@@ -98,7 +98,7 @@ class Rastreator(LlanyClass):
             f"{self.__root}{self.__filename}/", ".txt", self.__filename + f"({pos})", contenido)
         self.__analizarContenido(contenido)
 
-    def __getRastreator(self, pos: int):
+    def __getSpider(self, pos: int):
         resultado = self.__petitionObject.get(self.__url_list[pos])
         print(f"Pos: {pos}, StatusCode: {resultado.status_code}, Url: {self.__url_list[pos]}")
         self.__results.append({
@@ -112,7 +112,7 @@ class Rastreator(LlanyClass):
     def start(self):
         pos: int = 0
         while pos < self.__url_list.__len__():
-            self.__getRastreator(pos)
+            self.__getSpider(pos)
             pos += 1
         print(f"Fin! Pos: {pos}")
 
@@ -134,12 +134,11 @@ class Rastreator(LlanyClass):
     # endregion
 
 
-"""# s = Rastreator("https://9gag.com/gag/a7WBdOA", [".jpg"])
-s = Rastreator(url="https://9gag.com/gag/a7WBdOA", evademode=RastreatorEvade.CLOUDFLARE)
-# s = Rastreator("https://9gag.com/gag/a7WBdOA", RastreatorModes.SIMPLE)
-# s = Rastreator("https://jsonlint.com/", [])
-# s = Rastreator("http://www.google.es", [], RastreatorModes.SIMPLE)
-# s = Rastreator("https://www.virustotal.com/gui/home/url.", [], RastreatorModes.SIMPLE)
+"""# s = Spider("https://9gag.com/gag/a7WBdOA", [".jpg"])
+s = Spider(url="https://9gag.com/gag/a7WBdOA", evademode=SpiderEvade.CLOUDFLARE)
+# s = Spider("https://9gag.com/gag/a7WBdOA", SpiderModes.SIMPLE)
+# s = Spider("https://jsonlint.com/", [])
+# s = Spider("http://www.google.es", [], SpiderModes.SIMPLE)
+# s = Spider("https://www.virustotal.com/gui/home/url.", [], SpiderModes.SIMPLE)
 s.start()
-print(s)
-"""
+print(s)"""

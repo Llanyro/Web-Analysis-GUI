@@ -3,7 +3,7 @@ from tkinter import messagebox
 from Easy_Tkinter.guiclass import GeneralTab, GeneralButton, GeneralNotebook, GeneralVentana, GeneralMenuBar, GeneralMenu, \
     GeneralDivTab, GeneralTextAreaScrollTab, GeneralEntradaTexto, GeneralCombox, GeneralCheckBox
 from Llanylib.SimpleTools import ControlVariables, URLController, FilesController
-from Funcionalidades.FuncionesRastreator import Rastreator, RastreatorModes, RastreatorEvade
+from Funcionalidades.FuncionesRastreator import Spider, SpiderModes, SpiderEvade
 from Funcionalidades.FuncionesNmap import MyScanner
 from Funcionalidades.FuncionesInfoServer import InfoServer
 from Funcionalidades.FuncionesFuzz import FuzzAnalyzer
@@ -794,22 +794,22 @@ class MainSpiderBotonSpider(GeneralButton):
             evade = box2.getCurrent()
             if self.__comprobarValidezUrl(url) and \
                     varcontroller.variableCorrectaInt(modo) and varcontroller.variableCorrectaInt(evade):
-                self.parent.rastreator = Rastreator(url=url,
-                                                    mode=RastreatorModes(modo),
-                                                    evademode=RastreatorEvade(evade))
-                self.parent.rastreator.start()
+                self.parent.spider = Spider(url=url,
+                                                    mode=SpiderModes(modo),
+                                                    evademode=SpiderEvade(evade))
+                self.parent.spider.start()
                 self.parent.printSpider()
             else:
                 messagebox.showinfo("Aviso", "No se ha introducido una url correcta!")
 
 
 class MainSpiderDivTab(GeneralDivTab):
-    __last_rastreator: Rastreator = None
+    __last_spider: Spider = None
 
     def __init__(self, parent: GeneralTab):
         super().__init__("Div", parent)
         GeneralEntradaTexto("url", self, 0, 0)
-        GeneralCombox("BoxModes", self, 0, 1, ["Simple", "Rastreator"])
+        GeneralCombox("BoxModes", self, 0, 1, ["Simple", "Full"])
         GeneralCombox("BoxEvades", self, 0, 2, ["Simple", "CloudFlare"])
 
         MainSpiderBotonSpider("Spider!", self, 1, 0)
@@ -817,21 +817,21 @@ class MainSpiderDivTab(GeneralDivTab):
         GeneralTextAreaScrollTab("Ultimo resultado", self, 2, 0, 7)
 
     @property
-    def rastreator(self):
-        return self.__last_rastreator
+    def spider(self):
+        return self.__last_spider
 
-    @rastreator.setter
-    def rastreator(self, rast: Rastreator):
-        self.__last_rastreator = rast
+    @spider.setter
+    def spider(self, rast: Spider):
+        self.__last_spider = rast
 
     def printSpider(self):
         text = self.get("Ultimo resultado")
         if text is None or issubclass(text.__class__, GeneralTextAreaScrollTab) is False:
             print("Text no valido")
-        elif self.__last_rastreator is None:
+        elif self.__last_spider is None:
             text.setText("Aun no se ha realizado ningun spider", True)
         else:
-            dicti: dict = self.__last_rastreator.getDict()
+            dicti: dict = self.__last_spider.getDict()
             text.setText(f"Url solicitada: {dicti['url_original']}\n")
             text.appendText(f"Url root: {dicti['root_url']}\n")
             text.appendText(f"Nombre de la carpeta creada con los contenidos de los objetos: "
@@ -856,7 +856,7 @@ class MainSpiderDivTab(GeneralDivTab):
 
 class MainSpiderTab(GeneralTab):
     def __init__(self, parent: GeneralNotebook):
-        super().__init__("Rastreator", parent)
+        super().__init__("Spider", parent)
         MainSpiderDivTab(self)
 
 
