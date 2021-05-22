@@ -3,7 +3,6 @@ from Llanylib.SimpleTools import LlanyClass, ControlVariables
 
 class StringIterator(LlanyClass):
     # region Variables
-    __key: str = "{{dict_name}}"
     __string: str
     __dicts_values: list
     __dicts_values_dicts: list
@@ -11,7 +10,7 @@ class StringIterator(LlanyClass):
 
     # endregion
     # region Constructores
-    def __init__(self, string: str, function):
+    def __init__(self, string: str, function=None):
         self.__string = string
         self.__dicts_values = []
         self.__dicts_values_dicts = []
@@ -37,7 +36,10 @@ class StringIterator(LlanyClass):
     def __save_or_restart(self, string_process: str):
         pos: int = ControlVariables.contains_any(string_process, self.__dicts_values)
         if pos == -1:
-            self.__funcion(string_process)
+            if self.__funcion is not None:
+                self.__funcion(string_process)
+            else:
+                print(string_process)
         else:
             self.__procesarString(string_process, pos)
 
@@ -52,10 +54,6 @@ class StringIterator(LlanyClass):
 
     # endregion
     # region Getters
-    @property
-    def key(self):
-        return self.__key
-
     @property
     def string(self):
         return self.__string
@@ -97,13 +95,18 @@ class StringIterator(LlanyClass):
     def removeDictList(self, pos: int):
         del self.__dicts_values_dicts[pos]
 
-    def procesarString(self):
+    def procesarString(self) -> bool:
         resultado: bool = False
         if self.__sepuedeAdd() is False:
             resultado = True
             self.__save_or_restart(self.__string)
         else:
             print("Hay que poner tantos diccionadios como variables diferentes")
+        return resultado
 
     # endregion
 
+
+s = StringIterator("https://www.google.es/{{dict_1}}/{{dict_2}}/{{dict_2}}", None)
+s.dicts_values_dicts = [["a"], ["b"]]
+s.procesarString()

@@ -13,7 +13,7 @@ class MyScanner:
             commandlist.append("nmap")
             commandlist.append(ip)
             if agressive is True:
-                #print("Pls no seas agresivo")
+                # print("Pls no seas agresivo")
                 commandlist.append("-A")
             else:
                 if script is True:
@@ -35,6 +35,8 @@ class MyScanner:
                 else:
                     commandlist.append(f"-p {ports}")
         return commandlist
+
+
 
     @staticmethod
     def __analizar_puerto(linea_completa: str, paramentros_de_los_puertos: int):
