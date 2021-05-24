@@ -594,7 +594,7 @@ class MainNMAPDivTab(GeneralDivTab):
         GeneralCheckBox("Scripts", self, 2, 1)
         GeneralCombox("TCP or UDP", self, 2, 2, ["TCP", "UDP"])
         GeneralCheckBox("Get service version", self, 2, 3)
-        GeneralCheckBox("Agressive", self, 2, 4)
+        GeneralCheckBox("Aggressive", self, 2, 4)
 
         # GeneralEntradaTexto("DelayText", self, 3, 0)
         GeneralCombox("BoxDelay", self, 3, 0, [0, 1, 2, 3, 4, 5])
