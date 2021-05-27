@@ -469,7 +469,8 @@ class MainFuzzingDivTab(GeneralDivTab):
         else:
             url = urltext.getText()
             if varcontroller.variableCorrecta(url):
-                dicts_usados = varcontroller.findAll("{{(.+?)}}", url)
+                dicts_usados: list = varcontroller.findAll("{{(.+?)}}", url)
+                dicts_usados = list(dict.fromkeys(dicts_usados))
                 fuzzer = FuzzAnalyzer(url, "./dict/", dicts_usados)
                 resultados = fuzzer.getResults()
                 self.printFuzz(resultados)

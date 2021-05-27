@@ -107,6 +107,6 @@ class StringIterator(LlanyClass):
     # endregion
 
 
-s = StringIterator("https://www.google.es/{{dict_1}}/{{dict_2}}/{{dict_2}}", None)
-s.dicts_values_dicts = [["a"], ["b"]]
-s.procesarString()
+# s = StringIterator("https://www.google.es/{{dict_1}}/{{dict_2}}/{{dict_2}}", None)
+# s.dicts_values_dicts = [["a"], ["b"]]
+# s.procesarString()
